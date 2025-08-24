@@ -16,9 +16,9 @@ function TextRenderer(props: IRenderProps) {
       setIsTyping(false);
       return;
     }
-    
+
     setIsTyping(true);
-    
+
     const char: string = remainingText.charAt(0);
     setContent(content + char);
     setRemainingText(remainingText.slice(1));
@@ -30,8 +30,12 @@ function TextRenderer(props: IRenderProps) {
     return () => clearInterval(interval);
   })
   return (
-    <div className="">
-      <p className="text-slate-200 font-mono">{ content }<Cursor char="_" isTyping={ isTyping }/></p>
+    <div className="mt-4">
+      <p className="text-slate-200 font-mono">
+        <p className="inline text-amber-400">$ </p>
+        { content }
+        <Cursor char="_" isTyping={ isTyping }/>
+      </p>
     </div>
   )
 }
