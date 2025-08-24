@@ -25,7 +25,7 @@ function TextRenderer(props: IRenderProps) {
   }
 
   useEffect(() => {
-    const interval = setInterval(render, (props.time * 1000) || 100);
+    const interval = setInterval(render, (props.time as number * 1000) || 100);
 
     return () => clearInterval(interval);
   })
