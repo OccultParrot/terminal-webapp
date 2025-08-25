@@ -13,9 +13,9 @@ function Cursor(props: { char?: string; isTyping?: boolean }) {
   });
 
   return (
-    <p className={ `${ cursorVisible ? "opacity-100" : "opacity-0" } inline text-slate-200` }>
+    <span className={ `${ cursorVisible ? "opacity-100" : "opacity-0" } inline text-slate-200` }>
       { props.char || "_" }
-    </p>
+    </span>
   )
 }
 
