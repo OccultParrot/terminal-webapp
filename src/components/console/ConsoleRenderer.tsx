@@ -1,5 +1,4 @@
 import type { IRenderSteps } from '../../types';
-import Cursor from "../Cursor.tsx";
 import ConsoleType from "../ConsoleType.tsx";
 
 interface IConsoleRendererProps {
@@ -8,7 +7,7 @@ interface IConsoleRendererProps {
 }
 
 function ConsoleRenderer(props: IConsoleRendererProps) {
-  const { steps, isComplete } = props;
+  const { steps } = props;
 
   return (
     <div className="font-mono text-slate-200">
