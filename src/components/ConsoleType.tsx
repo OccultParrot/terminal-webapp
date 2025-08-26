@@ -7,7 +7,7 @@ interface IRenderProps {
   onComplete?: () => void;
 }
 
-function TextRenderer(props: IRenderProps) {
+function ConsoleType(props: IRenderProps) {
   const [ content, setContent ] = useState("");
   const [ remainingText, setRemainingText ] = useState(props.text);
   const [ isTyping, setIsTyping ] = useState(true);
@@ -28,9 +28,11 @@ function TextRenderer(props: IRenderProps) {
 
   useEffect(() => {
     const stutterFlag = Math.random() < 0.5 ? -1 : 1;
-    const delay = ((props.time as number * 900) + (Math.random() * 100) * stutterFlag) || 100;
+    const delay = props.time ? (props.time * 1000) / props.text.length : 50;
+    const variability = Math.random() * (delay / 2);
+    const adjustedDelay = delay + (variability * stutterFlag);
 
-    const interval = setInterval(render, delay);
+    const interval = setInterval(render, adjustedDelay);
 
     return () => clearInterval(interval);
   })
@@ -40,10 +42,10 @@ function TextRenderer(props: IRenderProps) {
       <p className="text-slate-200 font-mono">
         <span className="inline text-amber-400">$ </span>
         { content }
-        <Cursor char="_" isTyping={ isTyping }/>
+        {remainingText.length > 0 ? <Cursor char="_" isTyping={ isTyping }/> : null}
       </p>
     </div>
   )
 }
 
-export default TextRenderer;
+export default ConsoleType;
